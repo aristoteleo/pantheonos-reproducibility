@@ -15,14 +15,19 @@ Heavy data files (`.h5ad`, etc.) are hosted on **Zenodo** (link to be added once
 A 1000-plex human immune-oncology gene panel designed by multi-agent collaboration. The team downloads CELLxGENE Census data, runs HVG/DE/RF/scGeneFit/SpaPROS gene selection algorithms, benchmarks panel quality, and produces a final annotated panel with LaTeX report.
 
 - ▶ [Replay trajectory](https://pantheon-ui.aristoteleo.com/#/replay?url=https%3A%2F%2Fhuggingface.co%2Fdatasets%2FNaNg%2FPantheon-Agent-Trajectory%2Fresolve%2Fmain%2Fimmune_oncology_gene_panel_design.zip)
+- 🧬 RL gene-panel evolution code & runs: [`evolution/gene_panel/`](evolution/gene_panel/)
 
 ### Figure 3 — Evolution Reports (algorithm self-improvement)
 
-Pantheon's evolution system iteratively improves batch-correction algorithms. Static HTML reports of the evolution runs:
+Pantheon's evolution system iteratively improves batch-correction algorithms.
 
-- 📄 [BBKNN evolution](https://pantheonos.stanford.edu/evolve/bbknn.html)
-- 📄 [Harmonypy evolution](https://pantheonos.stanford.edu/evolve/harmonypy.html)
-- 📄 [Scanorama evolution](https://pantheonos.stanford.edu/evolve/scanorama.html)
+| Method | HTML report | Code & run artifacts |
+| --- | --- | --- |
+| BBKNN | 📄 [Report](https://pantheonos.stanford.edu/evolve/bbknn.html) | [`evolution/batch_correction/bbknn/`](evolution/batch_correction/bbknn/) |
+| Harmonypy | 📄 [Report](https://pantheonos.stanford.edu/evolve/harmonypy.html) | [`evolution/batch_correction/harmonypy/`](evolution/batch_correction/harmonypy/) |
+| Scanorama | 📄 [Report](https://pantheonos.stanford.edu/evolve/scanorama.html) | [`evolution/batch_correction/scanorama/`](evolution/batch_correction/scanorama/) |
+
+See [`evolution/README.md`](evolution/README.md) for the layout of run scripts, evaluators, JSON trajectory data, and evolved variants.
 
 ### Figure 4 — *(coming soon)*
 
@@ -46,6 +51,10 @@ Local working files for Figure 5 live under [`human-heart/`](human-heart/) — `
 ## Repository layout
 
 ```
+evolution/                  # Figures 2 & 3 — algorithm self-improvement runs
+├── batch_correction/       # Figure 3: BBKNN / Harmonypy / Scanorama
+└── gene_panel/             # Figure 2: RL gene-panel selection
+
 human-heart/                # Figure 5 working directory
 ├── PCW7_analysis/          # Earlier developmental stage (scripts, results)
 ├── PCW12_analysis/         # Main figure-5 analyses
