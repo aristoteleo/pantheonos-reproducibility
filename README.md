@@ -4,7 +4,7 @@ This repository contains reproduction materials (scripts, intermediate results, 
 
 The actual reasoning trajectories the agent took to produce each figure are recorded as **replayable bundles** hosted on Hugging Face. Click any "▶ Replay" link below to step through the exact agent conversation, tool calls, and intermediate outputs in your browser via the public PantheonOS replay viewer.
 
-Heavy data files (`.h5ad`, etc.) are hosted on **Zenodo** (link to be added once uploaded).
+Raw `.h5ad` inputs are not redistributed here. They come from two upstream studies — see the **Data sources** section below for the original data and access instructions.
 
 ---
 
@@ -45,7 +45,7 @@ A four-step analysis workflow on the PCW12 human fetal heart MERFISH + scRNA + s
 | 5.3 Spatial ligand-receptor disease analysis | ▶ [Replay](https://pantheon-ui.aristoteleo.com/#/replay?url=https%3A%2F%2Fhuggingface.co%2Fdatasets%2FNaNg%2FPantheon-Agent-Trajectory%2Fresolve%2Fmain%2Fspatial_ligand_receptor_disease.zip) |
 | 5.4 ATAC spatial mapping via MOSCOT | ▶ [Replay](https://pantheon-ui.aristoteleo.com/#/replay?url=https%3A%2F%2Fhuggingface.co%2Fdatasets%2FNaNg%2FPantheon-Agent-Trajectory%2Fresolve%2Fmain%2Fatac_spatial_mapping_moscot.zip) |
 
-Local working files for Figure 5 live under [`human-heart/`](human-heart/) — `PCW7_analysis/` and `PCW12_analysis/` contain scripts, figures, and reports. Raw `.h5ad` inputs are on Zenodo.
+Local working files for Figure 5 live under [`human-heart/`](human-heart/) — `PCW7_analysis/` and `PCW12_analysis/` contain scripts, figures, and reports. Raw `.h5ad` inputs come from the upstream MERFISH+ and human fetal multi-omic studies (see [Data sources](#data-sources)).
 
 ### Figure 6 — *(coming soon)*
 
@@ -65,7 +65,7 @@ human-heart/                # Figure 5 working directory
 │   ├── figures/            # Final figure PNGs/PDFs
 │   ├── REPORT.md           # Auto-generated analysis report
 │   └── REPORT_ATAC.md      # ATAC sub-analysis report
-├── data/                   # Raw .h5ad inputs (Zenodo, gitignored)
+├── data/                   # Raw .h5ad inputs (upstream papers, gitignored)
 └── references/
 
 mouse-embryo-e6/            # In progress
@@ -75,12 +75,22 @@ The full Pantheon project state (chat memory, agent runtime, virtual envs) is gi
 
 ---
 
-## Data hosting
+## Data sources
+
+The Figure 5 raw `.h5ad` inputs come from two upstream studies, not redistributed in this repository:
+
+| Modality | Preprint | Used for |
+| --- | --- | --- |
+| Single-cell multiome (snRNA + snATAC) of the human fetal heart | [medRxiv 2024.11.20.24317557](https://www.medrxiv.org/content/10.1101/2024.11.20.24317557v2) | scRNA / snATAC inputs, CHD enhancer–gene mapping |
+| 3D MERFISH whole-organ spatial transcriptomics | [bioRxiv 2025.11.02.686137](https://www.biorxiv.org/content/10.1101/2025.11.02.686137v1) | PCW12 3D MERFISH cell × gene tensor |
+
+Refer to each preprint's *Data Availability* section for the canonical accession links.
+
+## Other hosted assets
 
 | Asset | Where |
 | --- | --- |
 | Replayable agent trajectories | [`NaNg/Pantheon-Agent-Trajectory`](https://huggingface.co/datasets/NaNg/Pantheon-Agent-Trajectory) on Hugging Face |
-| Raw `.h5ad` data (heart, mouse embryo) | Zenodo (DOI to be added) |
 | Evolution HTML reports | https://pantheonos.stanford.edu/evolve/ |
 
 ---
