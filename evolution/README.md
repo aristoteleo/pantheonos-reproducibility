@@ -1,6 +1,6 @@
 # Pantheon Evolution Experiments
 
-Original run scripts and recorded outputs for the **algorithmic self-improvement** experiments in the PantheonOS paper (Figures 2 and 3).
+Original run scripts and recorded outputs for the **algorithmic self-improvement** experiments behind Figure 3 of the PantheonOS paper.
 
 Each experiment uses `pantheon.evolution` (LLM-guided code mutations + MAP-Elites quality-diversity search) to evolve a target algorithm against a fitness evaluator.
 
@@ -44,7 +44,7 @@ evolution/
 │       └── runs/
 │           ├── scanorama_optimized/
 │           └── paper_figures{_pancreas,_pbmc,_tma,_ffdaa1f0}/
-└── gene_panel/                          # Figure 2 — RL gene-panel selection
+└── gene_panel/                          # RL gene-panel selection (also Figure 3)
     ├── README.md
     ├── rl_gene_panel.py                 # initial RL implementation
     ├── evaluator.py
