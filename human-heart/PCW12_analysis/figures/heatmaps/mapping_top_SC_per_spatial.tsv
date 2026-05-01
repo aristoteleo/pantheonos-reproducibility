@@ -1,0 +1,35 @@
+spatial_celltype	n_spots	top_SC_coarse	top_frac
+vCM-LV-AV	327	VCM	0.593
+vCM-LV-Compact I	20514	VCM	0.902
+vCM-LV-Compact II	7547	VCM	0.893
+vCM-LV-Hybrid	2252	VCM	0.984
+vCM-LV-Trabecular I	1088	VCM	0.868
+vCM-LV-Trabecular II	4290	VCM	0.939
+vCM-LV/RV-Purkinje	1537	VCM	0.783
+vCM-RV-AV	333	VCM	0.387
+vCM-RV-Compact	5248	VCM	0.969
+vCM-RV-Hybrid	2381	VCM	0.966
+vCM-RV-Proliferating	2436	VCM	0.867
+vCM-RV-Trabecular	3773	VCM	0.934
+vCM-IVS-His	92	VCM	0.446
+aCM-LA	5256	ACM	0.838
+aCM-RA	6647	ACM	0.779
+Compact vFibro	5155	FB	0.981
+Proliferating vFibro	1184	FB	0.888
+Trabecular vFibro	2122	FB	0.861
+VIC	2372	FB	0.944
+aFibro	2908	FB	0.955
+adFibro	1117	FB	0.994
+EPDC	1660	FB	0.977
+aEndocardial	1558	Endocardial	0.703
+vEndocardial	2991	Endocardial	0.617
+BEC	3539	Endothelial	0.703
+LEC	474	Endothelial	0.489
+VEC	720	Endocardial	0.667
+Pericyte	2937	MuralCells	0.614
+VSMC	3961	FB	0.482
+Epicardial	2084	FB	0.848
+Neuronal	350	FB	0.454
+WBC	269	MyeloidCells	0.844
+ncCM-AVC-like	186	ACM	0.511
+ncCM-IFT-like	692	ACM	0.338

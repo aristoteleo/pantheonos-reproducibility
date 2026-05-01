@@ -1,0 +1,257 @@
+{
+  "references": [
+    {
+      "id": "ref_001",
+      "type": "paper",
+      "title": "Mapping cells through time and space with moscot",
+      "authors": ["Klein, Dominik", "Palla, Giovanni", "Lange, Marius", "Klein, Michal", "Piran, Zoe", "Gander, Manuel", "Meng-Papaxanthos, Laetitia", "Sterr, Michael", "Saber, Lama", "Cuturi, Marco", "Theis, Fabian J."],
+      "year": "2025",
+      "doi": "10.1038/s41586-024-08453-2",
+      "pmid": "39843746",
+      "url": "https://www.nature.com/articles/s41586-024-08453-2",
+      "source": "Nature"
+    },
+    {
+      "id": "ref_002",
+      "type": "paper",
+      "title": "Optimal-Transport Analysis of Single-Cell Gene Expression Identifies Developmental Trajectories in Reprogramming",
+      "authors": ["Schiebinger, Geoffrey", "Shu, Jian", "Tabaka, Marcin", "Cleary, Brian", "Subramanian, Vidya", "Solomon, Aryeh", "Gould, Joshua", "Liu, Siyan", "Lin, Stacie", "Berube, Peter", "Lee, Lia", "Chen, Jenny", "Brumbaugh, Justin", "Rigollet, Philippe", "Hochedlinger, Konrad", "Jaenisch, Rudolf", "Regev, Aviv", "Lander, Eric S."],
+      "year": "2019",
+      "doi": "10.1016/j.cell.2019.01.006",
+      "pmid": "30712874",
+      "url": "https://www.cell.com/cell/fulltext/S0092-8674(19)30039-X",
+      "source": "Cell"
+    },
+    {
+      "id": "ref_003",
+      "type": "paper",
+      "title": "SCOT: Single-Cell Multi-Omics Alignment with Optimal Transport",
+      "authors": ["Demetci, Pinar", "Santorella, Rebecca", "Sandstede, Bjorn", "Noble, William Stafford", "Singh, Ritambhara"],
+      "year": "2022",
+      "doi": "10.1089/cmb.2021.0446",
+      "pmid": "35050714",
+      "url": "https://www.liebertpub.com/doi/10.1089/cmb.2021.0446",
+      "source": "Journal of Computational Biology"
+    },
+    {
+      "id": "ref_004",
+      "type": "paper",
+      "title": "Spatially resolved, highly multiplexed RNA profiling in single cells",
+      "authors": ["Chen, Kok Hao", "Boettiger, Alistair N.", "Moffitt, Jeffrey R.", "Wang, Siyuan", "Zhuang, Xiaowei"],
+      "year": "2015",
+      "doi": "10.1126/science.aaa6090",
+      "pmid": "25858977",
+      "url": "https://www.science.org/doi/10.1126/science.aaa6090",
+      "source": "Science"
+    },
+    {
+      "id": "ref_005",
+      "type": "paper",
+      "title": "High-throughput single-cell gene-expression profiling with multiplexed error-robust fluorescence in situ hybridization",
+      "authors": ["Moffitt, Jeffrey R.", "Hao, Junjie", "Wang, Guiping", "Chen, Kok Hao", "Babcock, Hazen P.", "Zhuang, Xiaowei"],
+      "year": "2016",
+      "doi": "10.1073/pnas.1612826113",
+      "pmid": "27625426",
+      "url": "https://www.pnas.org/doi/10.1073/pnas.1612826113",
+      "source": "Proceedings of the National Academy of Sciences"
+    },
+    {
+      "id": "ref_006",
+      "type": "paper",
+      "title": "Spatiotemporal modeling of molecular holograms",
+      "authors": ["Qiu, Xiaojie", "Zhu, Daniel Y.", "Lu, Yifan", "Yao, Jiajun", "Jing, Zehua", "Cheng, Mengnan", "Pan, Hailin", "Liao, Sha", "Liu, Chao", "Weissman, Jonathan S.", "Ma, Jiayi", "Xu, Xun", "Liu, Shiping", "Bai, Yinqi"],
+      "year": "2024",
+      "doi": "10.1016/j.cell.2024.10.011",
+      "pmid": "39532097",
+      "url": "https://www.cell.com/cell/fulltext/S0092-8674(24)01194-2",
+      "source": "Cell"
+    },
+    {
+      "id": "ref_007",
+      "type": "paper",
+      "title": "Single-cell chromatin accessibility reveals principles of regulatory variation",
+      "authors": ["Buenrostro, Jason D.", "Wu, Beijing", "Litzenburger, Ulrike M.", "Ruff, Dave", "Gonzales, Michael L.", "Snyder, Michael P.", "Chang, Howard Y.", "Greenleaf, William J."],
+      "year": "2015",
+      "doi": "10.1038/nature14590",
+      "pmid": "26083756",
+      "url": "https://www.nature.com/articles/nature14590",
+      "source": "Nature"
+    },
+    {
+      "id": "ref_008",
+      "type": "paper",
+      "title": "Multiplex single-cell profiling of chromatin accessibility by combinatorial cellular indexing",
+      "authors": ["Cusanovich, Darren A.", "Daza, Riza", "Adey, Andrew", "Pliner, Hannah A.", "Christiansen, Lena", "Gunderson, Kevin L.", "Steemers, Frank J.", "Trapnell, Cole", "Shendure, Jay"],
+      "year": "2015",
+      "doi": "10.1126/science.aab1601",
+      "pmid": "25953818",
+      "url": "https://www.science.org/doi/10.1126/science.aab1601",
+      "source": "Science"
+    },
+    {
+      "id": "ref_009",
+      "type": "paper",
+      "title": "Contribution of rare inherited and de novo variants in 2,871 congenital heart disease probands",
+      "authors": ["Jin, Sheng Chih", "Homsy, Jason", "Zaidi, Samir", "Lu, Qiongshi", "Morton, Sarah", "DePalma, Steven R.", "Brueckner, Martina", "Chung, Wendy K.", "Gelb, Bruce D.", "Goldmuntz, Elizabeth", "Seidman, Jonathan G.", "Seidman, Christine E.", "Lifton, Richard P."],
+      "year": "2017",
+      "doi": "10.1038/ng.3970",
+      "pmid": "28991257",
+      "url": "https://www.nature.com/articles/ng.3970",
+      "source": "Nature Genetics"
+    },
+    {
+      "id": "ref_010",
+      "type": "paper",
+      "title": "Distinct genetic architectures for syndromic and nonsyndromic congenital heart defects identified by exome sequencing",
+      "authors": ["Sifrim, Alejandro", "Hitz, Marc-Phillip", "Wilsdon, Anna", "Breckpot, Jeroen", "Al Turki, Saeed H.", "Thienpont, Bernard", "Hurles, Matthew E."],
+      "year": "2016",
+      "doi": "10.1038/ng.3627",
+      "pmid": "27479907",
+      "url": "https://www.nature.com/articles/ng.3627",
+      "source": "Nature Genetics"
+    },
+    {
+      "id": "ref_011",
+      "type": "paper",
+      "title": "De novo mutations in congenital heart disease with neurodevelopmental and other congenital anomalies",
+      "authors": ["Homsy, Jason", "Zaidi, Samir", "Shen, Yufeng", "Ware, James S.", "Samocha, Kaitlin E.", "Karczewski, Konrad J.", "DePalma, Steven R.", "Seidman, Christine E.", "Chung, Wendy K."],
+      "year": "2015",
+      "doi": "10.1126/science.aac9396",
+      "pmid": "26785492",
+      "url": "https://www.science.org/doi/10.1126/science.aac9396",
+      "source": "Science"
+    },
+    {
+      "id": "ref_012",
+      "type": "paper",
+      "title": "Integrative single-cell analysis of cardiogenesis identifies developmental trajectories and non-coding mutations in congenital heart disease",
+      "authors": ["Ameen, Mohamed", "Sundaram, Laksshman", "Shen, Mengcheng", "Banerjee, Abhimanyu", "Kundu, Soumya", "Nair, Surag", "Shcherbina, Anna", "Wu, Joseph C.", "Engreitz, Jesse M.", "Greenleaf, William J.", "Kundaje, Anshul"],
+      "year": "2022",
+      "doi": "10.1016/j.cell.2022.11.028",
+      "pmid": "36563664",
+      "url": "https://www.cell.com/cell/fulltext/S0092-8674(22)01503-3",
+      "source": "Cell"
+    },
+    {
+      "id": "ref_013",
+      "type": "paper",
+      "title": "A Spatiotemporal Organ-Wide Gene Expression and Cell Atlas of the Developing Human Heart",
+      "authors": ["Asp, Michaela", "Giacomello, Stefania", "Larsson, Ludvig", "Wu, Chenglin", "Furth, Daniel", "Qian, Xiaoyan", "Wardell, Eva", "Custodio, Joaquin", "Lundeberg, Joakim"],
+      "year": "2019",
+      "doi": "10.1016/j.cell.2019.11.025",
+      "pmid": "31835037",
+      "url": "https://www.cell.com/cell/fulltext/S0092-8674(19)31336-2",
+      "source": "Cell"
+    },
+    {
+      "id": "ref_014",
+      "type": "paper",
+      "title": "Single-Cell Transcriptome Analysis Maps the Developmental Track of the Human Heart",
+      "authors": ["Cui, Yiman", "Zheng, Yuxuan", "Liu, Xixi", "Yan, Liying", "Fan, Xiaoying", "Yong, Jun", "Hu, Yuqiong", "Wen, Lu", "Qiao, Jie", "Tang, Fuchou"],
+      "year": "2019",
+      "doi": "10.1016/j.celrep.2019.01.079",
+      "pmid": "30759401",
+      "url": "https://www.cell.com/cell-reports/fulltext/S2211-1247(19)30108-1",
+      "source": "Cell Reports"
+    },
+    {
+      "id": "ref_015",
+      "type": "paper",
+      "title": "Population and Single-Cell Analysis of Human Cardiogenesis Reveals Unique LGR5 Ventricular Progenitors in Embryonic Outflow Tract",
+      "authors": ["Sahara, Makoto", "Santoro, Federica", "Sohlmer, Jesper", "Zhou, Chikai", "Witman, Nevin", "Leung, Chuen Yan", "Chien, Kenneth R."],
+      "year": "2019",
+      "doi": "10.1016/j.devcel.2019.01.005",
+      "pmid": "30713072",
+      "url": "https://www.cell.com/developmental-cell/fulltext/S1534-5807(19)30005-X",
+      "source": "Developmental Cell"
+    },
+    {
+      "id": "ref_016",
+      "type": "paper",
+      "title": "Cells of the adult human heart",
+      "authors": ["Litvinukova, Monika", "Talavera-Lopez, Carlos", "Maatz, Henrike", "Reichart, Daniel", "Worth, Catherine L.", "Lindberg, Eric L.", "Seidman, Jonathan G.", "Seidman, Christine E.", "Hubner, Norbert", "Teichmann, Sarah A."],
+      "year": "2020",
+      "doi": "10.1038/s41586-020-2797-4",
+      "pmid": "32971526",
+      "url": "https://www.nature.com/articles/s41586-020-2797-4",
+      "source": "Nature"
+    },
+    {
+      "id": "ref_017",
+      "type": "paper",
+      "title": "Dynamic and Coordinated Epigenetic Regulation of Developmental Transitions in the Cardiac Lineage",
+      "authors": ["Wamstad, Joseph A.", "Alexander, Jeffrey M.", "Truty, Rebecca M.", "Shrikumar, Avanti", "Li, Feiya", "Keller, Gordon M.", "Srivastava, Deepak", "Pollard, Katherine S.", "Boyer, Laurie A.", "Bruneau, Benoit G."],
+      "year": "2012",
+      "doi": "10.1016/j.cell.2012.07.035",
+      "pmid": "22981692",
+      "url": "https://www.cell.com/cell/fulltext/S0092-8674(12)01062-8",
+      "source": "Cell"
+    },
+    {
+      "id": "ref_018",
+      "type": "paper",
+      "title": "A Temporal Chromatin Signature in Human Embryonic Stem Cells Identifies Regulators of Cardiac Development",
+      "authors": ["Paige, Sharon L.", "Thomas, Sean", "Stoick-Cooper, Cristi L.", "Wang, Hao", "Maves, Lisa", "Sandstrom, Richard", "Keller, Gordon", "Moon, Randall T.", "Stamatoyannopoulos, John", "Murry, Charles E."],
+      "year": "2012",
+      "doi": "10.1016/j.cell.2012.08.027",
+      "pmid": "23021221",
+      "url": "https://www.cell.com/cell/fulltext/S0092-8674(12)01058-6",
+      "source": "Cell"
+    },
+    {
+      "id": "ref_019",
+      "type": "paper",
+      "title": "The developmental genetics of congenital heart disease",
+      "authors": ["Bruneau, Benoit G."],
+      "year": "2008",
+      "doi": "10.1038/nature06801",
+      "pmid": "18288184",
+      "url": "https://www.nature.com/articles/nature06801",
+      "source": "Nature"
+    },
+    {
+      "id": "ref_020",
+      "type": "paper",
+      "title": "Clinical Course and Management of Hypertrophic Cardiomyopathy",
+      "authors": ["Maron, Barry J.", "Rowin, Ethan J.", "Maron, Martin S."],
+      "year": "2018",
+      "doi": "10.1056/NEJMra1710575",
+      "pmid": "30110588",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMra1710575",
+      "source": "New England Journal of Medicine"
+    },
+    {
+      "id": "ref_021",
+      "type": "paper",
+      "title": "SCANPY: large-scale single-cell gene expression data analysis",
+      "authors": ["Wolf, F. Alexander", "Angerer, Philipp", "Theis, Fabian J."],
+      "year": "2018",
+      "doi": "10.1186/s13059-017-1382-0",
+      "pmid": "29409532",
+      "url": "https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1382-0",
+      "source": "Genome Biology"
+    },
+    {
+      "id": "ref_022",
+      "type": "paper",
+      "title": "The scverse project provides a computational ecosystem for single-cell omics data analysis",
+      "authors": ["Virshup, Isaac", "Bredikhin, Danila", "Heumos, Lukas", "Palla, Giovanni", "Sturm, Gregor", "Gayoso, Adam", "Kats, Ilia", "Koutrouli, Mikaela", "Theis, Fabian J.", "Wolf, F. Alexander"],
+      "year": "2023",
+      "doi": "10.1038/s41587-023-01733-8",
+      "pmid": "37037904",
+      "url": "https://www.nature.com/articles/s41587-023-01733-8",
+      "source": "Nature Biotechnology"
+    },
+    {
+      "id": "ref_023",
+      "type": "paper",
+      "title": "Development of the Cardiac Conduction System: Why Are Some Regions of the Heart More Arrhythmogenic Than Others?",
+      "authors": ["Christoffels, Vincent M.", "Moorman, Antoon F. M."],
+      "year": "2009",
+      "doi": "10.1161/CIRCEP.108.829341",
+      "pmid": "19808465",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIRCEP.108.829341",
+      "source": "Circulation: Arrhythmia and Electrophysiology"
+    }
+  ]
+}

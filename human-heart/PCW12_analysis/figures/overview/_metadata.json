@@ -1,0 +1,411 @@
+{
+  "scrna": {
+    "shape": [
+      95684,
+      31019
+    ],
+    "obs_columns": [
+      "orig.ident",
+      "nCount_RNA",
+      "nFeature_RNA",
+      "nUMI",
+      "nGene",
+      "ratio.mt",
+      "ratio.ribo",
+      "cells",
+      "nUMI_non_MT",
+      "sample_id",
+      "log10GenesPerUMI",
+      "S.Score",
+      "G2M.Score",
+      "Phase",
+      "GEX_saturation",
+      "cbc",
+      "source",
+      "ATAC_barcode",
+      "celltype",
+      "celltype_label",
+      "Rounded.PCW",
+      "Sex",
+      "coarse_celltype",
+      "PCW_bin"
+    ],
+    "obs_dtypes": {
+      "orig.ident": "category",
+      "nCount_RNA": "float64",
+      "nFeature_RNA": "int32",
+      "nUMI": "float64",
+      "nGene": "int32",
+      "ratio.mt": "float64",
+      "ratio.ribo": "float64",
+      "cells": "category",
+      "nUMI_non_MT": "float64",
+      "sample_id": "category",
+      "log10GenesPerUMI": "float64",
+      "S.Score": "float64",
+      "G2M.Score": "float64",
+      "Phase": "category",
+      "GEX_saturation": "float64",
+      "cbc": "object",
+      "source": "category",
+      "ATAC_barcode": "category",
+      "celltype": "category",
+      "celltype_label": "category",
+      "Rounded.PCW": "int32",
+      "Sex": "category",
+      "coarse_celltype": "category",
+      "PCW_bin": "category"
+    },
+    "var_columns": [],
+    "obsm_keys": [],
+    "obsm_shapes": {},
+    "uns_keys": [],
+    "layers": [
+      "counts"
+    ],
+    "X_dtype": "float64",
+    "X_min_max_sample": [
+      0.0,
+      1000.0
+    ],
+    "obs_value_samples": {
+      "orig.ident": [
+        "FT015029_1",
+        "FT015029_2",
+        "FT015029_3",
+        "FT015029_4",
+        "FT015029_5",
+        "FT015029_6",
+        "FT038_FT041_2",
+        "FT038_FT041_3",
+        "FT038_FT072_4",
+        "FT038_FT072_5",
+        "FT038_FT072_6",
+        "FT039",
+        "FT041_FT072_7",
+        "FT041_FT072_8",
+        "FT043_FT058_1",
+        "FT043_FT058_2",
+        "FT043_FT070_3",
+        "FT043_FT070_4",
+        "FT052_FT053_1",
+        "FT052_FT053_2",
+        "FT052_FT054_3",
+        "FT052_FT054_4",
+        "FT058_FT070_5",
+        "FT058_FT070_6"
+      ],
+      "nCount_RNA": "<10951 unique values, sample: ['13208.0', '4898.0', '7105.0', '8300.0', '9574.0']>",
+      "nFeature_RNA": "<4528 unique values, sample: ['2301', '2939', '3466', '3654', '4382']>",
+      "nUMI": "<11008 unique values, sample: ['13232.0', '4904.0', '7114.0', '8322.0', '9585.0']>",
+      "nGene": "<4512 unique values, sample: ['2307', '2948', '3488', '3665', '4405']>",
+      "ratio.mt": "<48978 unique values, sample: ['0.0026508972267536707', '0.003004085556356645', '0.03870631194574856', '0.04012998790810157', '0.06648861400056227']>",
+      "ratio.ribo": "<68330 unique values, sample: ['0.006117455138662317', '0.00829127613554434', '0.020556227327690448', '0.02361540624121451', '0.02827334376630151']>",
+      "cells": "<89221 unique values, sample: ['AGTTGCGTCACTTCAT', 'CGCGATTCAGTAGCCT', 'GCCACACAGTAGCTTA', 'GCCTGTGCAGGAATCG', 'TGCTCCGTCCCGCAAA']>",
+      "nUMI_non_MT": "<10931 unique values, sample: ['12701.0', '4891.0', '6641.0', '8297.0', '9214.0']>",
+      "sample_id": [
+        "FT015029_1",
+        "FT015029_2",
+        "FT015029_3",
+        "FT015029_4",
+        "FT015029_5",
+        "FT015029_6",
+        "FT038_FT041_2",
+        "FT038_FT041_3",
+        "FT038_FT072_4",
+        "FT038_FT072_5",
+        "FT038_FT072_6",
+        "FT039",
+        "FT041_FT072_7",
+        "FT041_FT072_8",
+        "FT043_FT058_1",
+        "FT043_FT058_2",
+        "FT043_FT070_3",
+        "FT043_FT070_4",
+        "FT052_FT053_1",
+        "FT052_FT053_2",
+        "FT052_FT054_3",
+        "FT052_FT054_4",
+        "FT058_FT070_5",
+        "FT058_FT070_6"
+      ],
+      "log10GenesPerUMI": "<92496 unique values, sample: ['0.8841040797220876', '0.8951378930976304', '0.9006814451797251', '0.9036659951939253', '0.9112590735704953']>",
+      "S.Score": "<39445 unique values, sample: ['-0.09726443768996962', '-0.196048632218845', '-0.22129348193177983', '0.35047281323877066', '0.8368794326241136']>",
+      "G2M.Score": "<54991 unique values, sample: ['-0.042060278902384146', '-0.23616734143049933', '-0.31567701304543405', '-0.40144699355225677', '0.2349677612835508']>",
+      "Phase": [
+        "G1",
+        "G2M",
+        "S"
+      ],
+      "GEX_saturation": [
+        "0.310445",
+        "0.388063",
+        "0.414221",
+        "0.417152",
+        "0.419062",
+        "0.420957",
+        "0.427136",
+        "0.439277",
+        "0.451819",
+        "0.455633",
+        "0.455911",
+        "0.465158",
+        "0.474276",
+        "0.474884",
+        "0.485131",
+        "0.494092",
+        "0.507233",
+        "0.518213",
+        "0.525133",
+        "0.532261",
+        "0.537149",
+        "0.666954",
+        "0.711658",
+        "0.775752"
+      ],
+      "cbc": "<95684 unique values, sample: ['FT015029_1_AGTTGCGTCACTTCAT', 'FT015029_1_CGCGATTCAGTAGCCT', 'FT015029_1_GCCACACAGTAGCTTA', 'FT015029_1_GCCTGTGCAGGAATCG', 'FT015029_1_TGCTCCGTCCCGCAAA']>",
+      "source": [
+        "FT029",
+        "FT038",
+        "FT039",
+        "FT041",
+        "FT043",
+        "FT052",
+        "FT058",
+        "FT070"
+      ],
+      "ATAC_barcode": "<89221 unique values, sample: ['CACGGATACCCGGAAT', 'CTGAGCAACAACAGCT', 'CTTGAATCTACGCCAC', 'GCTATGGGAGGGAGCA', 'GTGGACACTATTACCG']>",
+      "celltype": "<111 unique values, sample: ['ACM_cellcycle', 'Endocardial_IFT_VEC', 'Endocardial_OFT_VEC', 'SympatheticNeuron', 'VCM_cellcycle']>",
+      "celltype_label": [
+        "ACM",
+        "CoreConductionCells",
+        "Endocardial",
+        "Endothelial",
+        "Epicardial",
+        "FB",
+        "ImmuneCells",
+        "MuralCells",
+        "NC",
+        "TzConductionCells",
+        "VCM"
+      ],
+      "Rounded.PCW": [
+        "11",
+        "12",
+        "13"
+      ],
+      "Sex": [
+        "Female",
+        "Male"
+      ],
+      "coarse_celltype": [
+        "ACM",
+        "CoreConductionCells",
+        "Endocardial",
+        "Endothelial",
+        "Epicardial",
+        "FB",
+        "LymphoidCells",
+        "MuralCells",
+        "MyeloidCells",
+        "NC",
+        "SchwannCells",
+        "SympatheticNeuron",
+        "TzConductionCells",
+        "VCM"
+      ],
+      "PCW_bin": [
+        "PCW11-13"
+      ]
+    }
+  },
+  "merfish": {
+    "shape": [
+      100000,
+      238
+    ],
+    "obs_columns": [
+      "volume",
+      "z",
+      "fov",
+      "batch",
+      "section",
+      "n_genes_by_counts",
+      "log1p_n_genes_by_counts",
+      "total_counts",
+      "log1p_total_counts",
+      "bad_H4",
+      "bad_H5",
+      "bad_H6",
+      "bad_H7",
+      "bad_H8",
+      "celltype"
+    ],
+    "obs_dtypes": {
+      "volume": "float64",
+      "z": "float64",
+      "fov": "category",
+      "batch": "category",
+      "section": "int64",
+      "n_genes_by_counts": "int64",
+      "log1p_n_genes_by_counts": "float64",
+      "total_counts": "int64",
+      "log1p_total_counts": "float64",
+      "bad_H4": "float64",
+      "bad_H5": "float64",
+      "bad_H6": "float64",
+      "bad_H7": "float64",
+      "bad_H8": "float64",
+      "celltype": "category"
+    },
+    "var_columns": [
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "H5",
+      "H6",
+      "H7",
+      "H8",
+      "n_cells_by_counts",
+      "mean_counts",
+      "log1p_mean_counts",
+      "pct_dropout_by_counts",
+      "total_counts",
+      "log1p_total_counts"
+    ],
+    "obsm_keys": [
+      "X_blanks",
+      "X_pca",
+      "X_pca_harmony",
+      "X_spateo",
+      "X_spateo_update",
+      "X_spatial",
+      "X_umap",
+      "rep"
+    ],
+    "obsm_shapes": {
+      "X_blanks": [
+        100000,
+        10
+      ],
+      "X_pca": [
+        100000,
+        50
+      ],
+      "X_pca_harmony": [
+        100000,
+        50
+      ],
+      "X_spateo": [
+        100000,
+        3
+      ],
+      "X_spateo_update": [
+        100000,
+        3
+      ],
+      "X_spatial": [
+        100000,
+        2
+      ],
+      "X_umap": [
+        100000,
+        2
+      ],
+      "rep": [
+        100000,
+        50
+      ]
+    },
+    "uns_keys": [
+      "blank_names",
+      "celltype_Farah_et_al_colors",
+      "celltype_extra_colors",
+      "celltype_fixed_colors",
+      "leiden",
+      "log1p",
+      "neighbors",
+      "pca",
+      "umap"
+    ],
+    "layers": [
+      "counts"
+    ],
+    "X_dtype": "float32",
+    "X_min_max_sample": [
+      0.0,
+      4.992435932159424
+    ],
+    "obs_value_samples": {
+      "volume": "<15892 unique values, sample: ['162880.0', '205952.0', '272128.0', '284928.0', '84672.0']>",
+      "z": "<99397 unique values, sample: ['2.157866321131628', '4.185030631270531', '5.136345776031434', '8.202798100372224', '8.518209918021771']>",
+      "fov": "<6434 unique values, sample: ['000_set19', '001_set1', '001_set15', '001_set17', '001_set18']>",
+      "batch": [
+        "ATR",
+        "VEN"
+      ],
+      "section": "<53 unique values, sample: ['1', '10', '12', '16', '3']>",
+      "n_genes_by_counts": "<160 unique values, sample: ['30', '37', '53', '66', '85']>",
+      "log1p_n_genes_by_counts": "<160 unique values, sample: ['3.4339872044851463', '3.6375861597263857', '3.9889840465642745', '4.204692619390966', '4.454347296253507']>",
+      "total_counts": "<1114 unique values, sample: ['194', '304', '329', '43', '73']>",
+      "log1p_total_counts": "<1114 unique values, sample: ['3.784189633918261', '4.304065093204169', '5.272999558563747', '5.720311776607412', '5.799092654460526']>",
+      "bad_H4": [
+        "0.0",
+        "1.0"
+      ],
+      "bad_H5": [
+        "0.0",
+        "1.0"
+      ],
+      "bad_H6": [
+        "0.0",
+        "1.0"
+      ],
+      "bad_H7": [
+        "0.0",
+        "1.0"
+      ],
+      "bad_H8": [
+        "0.0",
+        "1.0"
+      ],
+      "celltype": [
+        "BEC",
+        "Compact vFibro",
+        "EPDC",
+        "Epicardial",
+        "LEC",
+        "Neuronal",
+        "Pericyte",
+        "Proliferating vFibro",
+        "Trabecular vFibro",
+        "VEC",
+        "VIC",
+        "VSMC",
+        "WBC",
+        "aCM-LA",
+        "aCM-RA",
+        "aEndocardial",
+        "aFibro",
+        "adFibro",
+        "ncCM-AVC-like",
+        "ncCM-IFT-like",
+        "vCM-IVS-His",
+        "vCM-LV-AV",
+        "vCM-LV-Compact I",
+        "vCM-LV-Compact II",
+        "vCM-LV-Hybrid",
+        "vCM-LV-Trabecular I",
+        "vCM-LV-Trabecular II",
+        "vCM-LV/RV-Purkinje",
+        "vCM-RV-AV",
+        "vCM-RV-Compact",
+        "vCM-RV-Hybrid",
+        "vCM-RV-Proliferating",
+        "vCM-RV-Trabecular",
+        "vEndocardial"
+      ]
+    }
+  }
+}

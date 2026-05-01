@@ -1,0 +1,49 @@
+{
+  "scrna": {
+    "n_cells": 95684,
+    "n_genes": 31019,
+    "n_donors": 8,
+    "n_samples": 24,
+    "pcw_distribution": {
+      "11": 55730,
+      "12": 32870,
+      "13": 7084
+    },
+    "sex_distribution": {
+      "Female": 55588,
+      "Male": 40096
+    },
+    "phase_distribution": {
+      "G1": 69734,
+      "S": 18168,
+      "G2M": 7782
+    },
+    "celltype_label_classes": 11,
+    "celltype_fine_classes": 111,
+    "median_n_genes": 1375.0,
+    "median_n_counts": 2389.0,
+    "median_pct_mt": 0.40998245160757973
+  },
+  "merfish": {
+    "n_cells": 100000,
+    "n_genes": 238,
+    "n_batches": 2,
+    "n_sections": 53,
+    "n_fovs": 6434,
+    "celltype_classes": 34,
+    "median_n_genes": 69.0,
+    "median_n_counts": 251.0,
+    "median_volume": 285888.0
+  },
+  "shared_broad_classes": [
+    "ACM",
+    "Endocardial",
+    "Endothelial",
+    "Epicardial",
+    "FB",
+    "ImmuneCells",
+    "MuralCells",
+    "NC",
+    "VCM"
+  ]
+}

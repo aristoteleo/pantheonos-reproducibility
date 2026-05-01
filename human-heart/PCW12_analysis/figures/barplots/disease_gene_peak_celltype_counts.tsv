@@ -1,0 +1,35 @@
+celltype	lineage	n_genes
+vCM-RV-Compact	vCM	26
+vCM-RV-Proliferating	vCM	12
+vCM-LV-Hybrid	vCM	11
+vCM-IVS-His	vCM	7
+vCM-LV-AV	vCM	7
+vCM-RV-Hybrid	vCM	5
+vCM-LV-Trabecular I	vCM	3
+vCM-LV-Trabecular II	vCM	3
+vCM-LV-Compact II	vCM	2
+vCM-LV/RV-Purkinje	vCM	2
+vCM-RV-Trabecular	vCM	1
+vCM-LV-Compact I	vCM	0
+vCM-RV-AV	vCM	0
+aCM-LA	aCM	11
+aCM-RA	aCM	2
+ncCM-AVC-like	ncCM	16
+ncCM-IFT-like	ncCM	1
+BEC	Endothelial	15
+LEC	Endothelial	14
+aEndocardial	Endothelial	14
+VEC	Endothelial	11
+vEndocardial	Endothelial	4
+adFibro	Fibroblast	15
+Compact vFibro	Fibroblast	6
+EPDC	Fibroblast	2
+Epicardial	Fibroblast	2
+Proliferating vFibro	Fibroblast	2
+Trabecular vFibro	Fibroblast	0
+aFibro	Fibroblast	0
+Pericyte	Mural	7
+VSMC	Mural	7
+VIC	VIC	7
+WBC	Immune	15
+Neuronal	Neural	11

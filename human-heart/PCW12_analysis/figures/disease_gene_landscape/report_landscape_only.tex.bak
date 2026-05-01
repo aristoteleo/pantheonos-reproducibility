@@ -1,0 +1,284 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- packages -------------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\usepackage[hidelinks,colorlinks=true,linkcolor=NavyBlue,urlcolor=NavyBlue,citecolor=NavyBlue]{hyperref}
+\usepackage[dvipsnames]{xcolor}
+
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+
+% Define a custom callout box for "key takeaway"
+\usepackage{tcolorbox}
+\tcbset{colback=blue!4!white,colframe=blue!40!black,boxrule=0.4pt,
+        arc=2pt,left=6pt,right=6pt,top=4pt,bottom=4pt}
+
+% --- title ----------------------------------------------------------------
+\title{\vspace{-1.5em}\textbf{Disease-gene expression landscape across cell types of the PCW12 human fetal heart}}
+\author{PCW12 Analysis Pipeline\thanks{Data: \texttt{adata\_imputed\_disease\_genes.h5ad}, 100{,}000-cell subsample of the PCW12 atlas. Disease panel: 221 genes spanning 10 cardiac traits.}}
+\date{\today}
+
+% --- document -------------------------------------------------------------
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent We profile a 221-gene cardiac-disease panel (10 traits: HCM, DCM, AVSD, OFT, ASD, VSD, Single-ventricle, Valve\_defects, TAA, PCGC) across the 34 cell types of a PCW12 (post-conception week~12) human fetal heart atlas. Using imputed log-normalised expression we compute (i) trait-by-celltype enrichment scores, (ii) Yanai's tissue-specificity index $\tau$ for each gene, and (iii) trait--trait similarity by Pearson correlation on celltype-score profiles vs.\ Jaccard overlap on gene-membership sets. Three orthogonal expression modules emerge without supervision and map onto the working myocardium, the AV/OFT cushion mesenchyme, and the aortic / general mesenchyme. HCM and DCM are nearly indistinguishable as cell-type-resolved signatures ($r = 0.998$) despite only 21\% gene overlap. The TAA panel converges on the same cushion-mesenchymal cells as the Valve-defects panel ($r = 0.85$) through only 3 shared genes, indicating \emph{functional convergence via independent gene sets}. High-$\tau$ disease genes recapitulate canonical cell-type markers (TBX1$\to$LEC, DLL4/KDR$\to$BEC, SALL1/4$\to$endocardial cushion), whereas low-$\tau$ genes are enriched for chromatin remodellers and splicing factors --- consistent with the dosage-sensitive haploinsufficiency model for syndromic CHD.
+\end{abstract}
+
+% =========================================================================
+\section{Introduction}
+\label{sec:intro}
+
+A long-standing question in cardiac developmental genetics is whether the genes implicated in distinct cardiovascular phenotypes (cardiomyopathies, septal defects, valve defects, conotruncal anomalies, aortopathies) act through shared or distinct cellular programs during heart formation. Bulk-tissue expression collapses this question; single-cell atlases of the developing human heart now make it tractable. Here we ask, for a curated 221-gene panel covering 10 cardiac traits:
+
+\begin{enumerate}[leftmargin=*,itemsep=0pt]
+    \item Beyond the coarse \emph{valve vs.\ non-valve} distinction, which cell types are enriched for each disease gene set at PCW12?
+    \item Which disease genes are cell-type specific and which are broadly expressed?
+    \item When two traits hit similar cell types, do they do so via shared genes or via independent genes that converge on the same program?
+\end{enumerate}
+
+We answer these by computing three complementary summaries from a single imputed cell$\times$gene matrix and presenting them in four figures (Fig.~\ref{fig:A}--\ref{fig:D}).
+
+% =========================================================================
+\section{Data and Methods}
+\label{sec:methods}
+
+\subsection{Data}
+The input is \texttt{adata\_imputed\_disease\_genes.h5ad}, a 100{,}000-cell subsample drawn from a single PCW12 donor of a human fetal-heart atlas. Cell-type proportions are preserved by stratified sampling; the smallest cell types retain $\geq 92$ cells (\texttt{vCM-IVS-His} $n{=}92$; \texttt{ncCM-AVC-like} $n{=}186$; \texttt{vCM-LV-RV-Purkinje} $n{=}1537$). Expression values are scVI-imputed and log1p-normalised. The disease panel comprises 221 genes annotated for membership in 10 trait sets (\texttt{HCM}, \texttt{DCM}, \texttt{AVSD}, \texttt{OFT}, \texttt{ASD}, \texttt{VSD}, \texttt{Single\_ventricle}, \texttt{Valve\_defects}, \texttt{TAA}, \texttt{PCGC}); each gene may belong to multiple traits. Two genes have zero variance across all cell types in the subsample and are dropped from $\tau$-based analyses, leaving 219 informative genes.
+
+\subsection{Per-celltype expression matrix}
+Cells are grouped by the atlas's curated \texttt{celltype} label ($K = 34$ classes). For each gene $g$ and cell type $c$ we compute the mean log-normalised expression
+\[
+    \bar{X}_{g,c} \;=\; \frac{1}{|\mathcal{C}_c|}\sum_{i \in \mathcal{C}_c} \mathrm{log1p}\!\left(\hat{x}_{i,g}\right),
+\]
+yielding a $221 \times 34$ matrix $\bar{X}$. This matrix is the basis for all downstream summaries.
+
+\subsection{Trait-by-celltype enrichment score}
+For each trait $t$ with gene set $\mathcal{G}_t$ we compute the per-celltype score
+\[
+    S_{t,c} \;=\; \frac{1}{|\mathcal{G}_t|}\sum_{g \in \mathcal{G}_t} z\!\left(\bar{X}_{g,c}\right),
+\]
+where $z(\cdot)$ is the across-celltype $z$-score for gene $g$. This produces a $10 \times 34$ trait-by-celltype matrix that visualises in Fig.~\ref{fig:A}.
+
+\subsection{Gene specificity (Yanai's $\tau$)}
+For each gene we compute Yanai's tissue-specificity index
+\[
+    \tau_g \;=\; \frac{\sum_{c=1}^{K}\!\left(1 - \tilde{X}_{g,c}\right)}{K - 1},
+    \qquad
+    \tilde{X}_{g,c} \;=\; \frac{\bar{X}_{g,c}}{\max_{c'} \bar{X}_{g,c'}}.
+\]
+$\tau \in [0,1]$: $0$ = uniformly expressed across cell types, $1$ = expressed in a single cell type. The cell type at which $\bar{X}_{g,c}$ is maximised is reported as the gene's \emph{best cell type}. Distributions and gene-level rankings are shown in Fig.~\ref{fig:C}.
+
+\subsection{Trait--trait similarity}
+For every unordered trait pair $(t_1,t_2)$ we compute two complementary summaries:
+\begin{align*}
+    r_{t_1,t_2} &= \mathrm{Pearson}\!\left(S_{t_1,\cdot},\, S_{t_2,\cdot}\right) && \text{(profile correlation across 34 cell types)} \\
+    J_{t_1,t_2} &= \frac{|\mathcal{G}_{t_1} \cap \mathcal{G}_{t_2}|}{|\mathcal{G}_{t_1} \cup \mathcal{G}_{t_2}|} && \text{(gene-membership overlap)}
+\end{align*}
+A high $r$ with low $J$ identifies trait pairs that converge on the same cell types via largely independent gene sets --- the most biologically informative regime. Both matrices and a $r$ vs.\ $J$ scatter are shown in Fig.~\ref{fig:D}.
+
+\subsection{Visualisation}
+Heatmaps in Figs.~\ref{fig:A}--\ref{fig:B} use a diverging RdBu\_r colormap centred on zero after across-celltype $z$-scoring. Cell types are ordered by lineage (CM\,$\to$\,Endocardial\,$\to$\,VEC/VIC\,$\to$\,EC\,$\to$\,Mesenchymal\,$\to$\,Neuronal\,$\to$\,WBC) and a coloured strip above the heatmaps marks the lineage block of each column. Fig.~\ref{fig:B} additionally reorders rows by hierarchical clustering (Ward linkage on Euclidean distance over $z$-scored rows) and shows trait-membership ribbons on the left margin so that gene clusters can be cross-referenced with disease panels.
+
+\subsection{Reproducibility}
+The full pipeline is in
+\href{run:../../scripts/12_disease_gene_landscape.py}{\texttt{PCW12\_analysis/scripts/12\_disease\_gene\_landscape.py}}.
+Outputs:
+\texttt{trait\_by\_celltype\_means.tsv} ($10 \times 34$),
+\texttt{gene\_specificity\_tau.tsv} (221 rows),
+\texttt{trait\_similarity.tsv} (45 trait pairs).
+
+% =========================================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{Trait--celltype landscape: two reciprocal blocks}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figA_trait_by_celltype.pdf}
+    \caption{\textbf{Trait-by-celltype enrichment.} Rows: 10 cardiac-disease traits. Columns: 34 PCW12 cell types ordered by developmental lineage (coloured strip above the heatmap). Cell colour: across-celltype $z$-scored mean expression of each trait's gene set. Two reciprocal blocks emerge: HCM/DCM peak in working ventricular cardiomyocytes (red on the CM block, blue elsewhere), whereas the cushion / mesenchymal traits (Valve\_defects, AVSD, OFT, TAA, PCGC) peak in valve endothelial / interstitial cells, endocardium, and mesenchymal fibroblasts / VSMC.}
+    \label{fig:A}
+\end{figure}
+
+The trait-by-celltype heatmap (Fig.~\ref{fig:A}) shows two qualitatively distinct enrichment patterns:
+
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+    \item \textbf{Myocardial block.} \emph{HCM} and \emph{DCM} are red across \texttt{vCM-RV-Compact}, \texttt{vCM-LV-Hybrid}, \texttt{vCM-LV-Compact~I/II} --- i.e.\ the working ventricular myocardium --- and blue everywhere else. The two cardiomyopathy panels are visually indistinguishable in this view.
+    \item \textbf{Cushion / mesenchymal block.} \emph{Valve\_defects, AVSD, OFT, PCGC, TAA, ASD, VSD, Single\_ventricle} are red across \texttt{aEndocardial}, \texttt{vEndocardial}, \texttt{VEC}, \texttt{VIC}, \texttt{VSMC}, and the fibroblast subtypes, with reciprocal blue across the CM block.
+\end{itemize}
+
+Two negative-control observations are equally informative. \emph{WBC} and \emph{BEC} are pan-blue across all 10 traits, indicating that the disease panel carries essentially no hematopoietic or capillary-endothelial signal at PCW12. These cell types are therefore useful biological negative controls in any downstream gene-set test on this atlas.
+
+A third observation, foreshadowing Fig.~\ref{fig:D}, is that \textbf{the TAA panel is mesenchymal, not aorta-specific}: its top cell types are VSMC, adventitial fibroblasts, and aFibro, overlapping the same column block that lights up for valve and septal traits.
+
+\subsection{Three unsupervised gene modules}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figB_gene_by_celltype.pdf}
+    \caption{\textbf{Gene-by-celltype heatmap, hierarchically clustered.} Rows: 219 disease genes (Ward linkage on $z$-scored rows). Columns: 34 cell types in lineage order. Left ribbon: trait-membership matrix (one column per trait, dark = member). Three dominant gene modules emerge from the row dendrogram: M-CM (working-myocyte specific; HCM/DCM heavy), M-cushion (VEC/VIC/Endocardial; valve and septal CHD), and M-mesenchymal (Fibroblast/VSMC/LEC; TAA + PCGC).}
+    \label{fig:B}
+\end{figure}
+
+Hierarchical clustering on the gene-by-celltype matrix (Fig.~\ref{fig:B}) recovers three dominant modules without any prior knowledge of trait labels:
+
+\begin{table}[H]
+    \centering\small
+    \begin{tabularx}{\linewidth}{@{}l Y Y@{}}
+        \toprule
+        \textbf{Module} & \textbf{Where it lights up} & \textbf{Trait membership} \\
+        \midrule
+        M-CM           & all vCM subtypes red, valve/EC/fibro blue                & HCM, DCM, plus CM-expressed PCGC/CHD genes \\
+        M-cushion      & VEC, VIC, ncCM-AVC-like, aEndocardial, vEndocardial red & Valve\_defects, AVSD, OFT, ASD, VSD \\
+        M-mesenchymal  & LEC, aEndocardial, VSMC, Fibroblasts red                 & TAA, PCGC, scattered CHD \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Three unsupervised gene modules and their trait associations.}
+    \label{tab:modules}
+\end{table}
+
+The trait-membership ribbons on the left margin make module assignment auditable per gene: brown ribbons (HCM) cluster within M-CM, purple ribbons (Valve\_defects) cluster within M-cushion, and dark green ribbons (TAA) sit within M-mesenchymal. The recovery of these blocks from clustering alone --- without using trait labels in the distance computation --- is a non-trivial consistency check on the panel curation.
+
+\subsection{Gene specificity: developmental TFs vs.\ chromatin regulators}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figC_gene_specificity.pdf}
+    \caption{\textbf{Per-gene cell-type specificity.} \emph{Top-left:} histogram of Yanai's $\tau$ across 219 informative disease genes. Median $\tau = 0.44$; long tail of cell-type-specific genes ($\tau > 0.8$). \emph{Top-right:} per-trait $\tau$ distributions. TAA has the highest median $\tau$; Valve\_defects and ASD have the lowest. \emph{Bottom-left:} top-20 most-specific genes with their best cell type. \emph{Bottom-right:} 20 most broadly expressed disease genes.}
+    \label{fig:C}
+\end{figure}
+
+The $\tau$ distribution (Fig.~\ref{fig:C}, top-left) is bimodal-ish, with a median of $0.44$ and a substantial tail of genes with $\tau > 0.8$. The two regimes carry different biological meaning:
+
+\begin{table}[H]
+    \centering\small
+    \begin{tabular}{@{}llrl@{}}
+        \toprule
+        \textbf{Gene} & \textbf{Best celltype} & \textbf{$\tau$} & \textbf{Biology} \\
+        \midrule
+        TBX1     & LEC                       & 0.970 & DiGeorge/22q11 master regulator (pharyngeal-arch) \\
+        FLT4     & LEC                       & 0.978 & VEGFR3, lymphangiogenesis (Milroy disease) \\
+        DLL4     & BEC                       & 0.914 & Notch ligand, canonical arterial-EC marker \\
+        KDR      & BEC                       & 0.844 & VEGFR2, pan-endothelial \\
+        SALL1    & vEndocardial              & 0.905 & Townes--Brocks; endocardial-cushion role \\
+        SALL4    & VEC                       & 0.894 & Okihiro/Duane-radial-ray; valve EC \\
+        TFAP2B   & Neuronal                  & 0.925 & Char syndrome (PDA); neural-crest TF \\
+        MYLK2    & vCM-LV/RV-Purkinje        & 0.888 & \textbf{HCM panel gene; \emph{Purkinje}-restricted at PCW12} \\
+        RYR3     & aCM-LA                    & 0.897 & Atrial-CM Ca$^{2+}$ release isoform \\
+        CYP21A2  & LEC                       & 0.966 & Adrenal steroidogenesis (PCGC variants) \\
+        \bottomrule
+    \end{tabular}
+    \caption{Selected high-$\tau$ disease genes. Cell-type assignments recapitulate canonical lineage markers --- a consistency check on the imputed expression and the cell-type curation.}
+    \label{tab:high_tau}
+\end{table}
+
+In contrast, the lowest-$\tau$ tail ($\tau < 0.2$) is dominated by chromatin remodellers, splicing factors, and general transcriptional regulators: \emph{ARID1B, CREBBP, KDM5A, KANSL1, NIPBL, NSD1, SETD5, SMARCE1, RBFOX2, SON, U2SURP, NF1, PBX1, TSC1, NAA15, POGZ}. These are precisely the genes recurrently mutated in syndromic CHD (Cornelia~de~Lange, Coffin--Siris, Sotos, KAT6A) where disease arises from \emph{dosage-sensitive haploinsufficiency in a ubiquitously expressed regulator}, not from cell-type-restricted mis-expression.
+
+\begin{tcolorbox}
+\textbf{Mechanism tracks specificity.} High-$\tau$ disease genes are tissue-program genes (TFs, signalling receptors, lineage markers); low-$\tau$ disease genes are chromatin / splicing regulators. The same dichotomy that organises the molecular basis of CHD genetics --- structural lineage genes vs.\ developmental dosage regulators --- is visible in the $\tau$ histogram of a single PCW12 atlas.
+\end{tcolorbox}
+
+A noteworthy outlier inside the HCM panel is \textbf{MYLK2 ($\tau = 0.888$)}, whose maximum is in \texttt{vCM-LV/RV-Purkinje} rather than in working myocardium. HCM is conventionally treated as a working-myocyte disease, but this single-celltype localisation suggests the HCM panel contains conduction-restricted members worth stratifying separately.
+
+The per-trait $\tau$ boxplots (top-right) refine these patterns. \emph{TAA} has the highest median $\tau$ ($\approx 0.55$) and the tightest IQR --- its 9-gene panel is uniformly mesenchymal-specific. \emph{Valve\_defects} and \emph{ASD} have the lowest medians ($\approx 0.36$), reflecting broader panels containing more transcriptional regulators. \emph{HCM} and \emph{DCM} have nearly identical $\tau$ distributions (median $\approx 0.5$).
+
+\subsection{Trait similarity: convergence via independent genes}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.97\linewidth]{figD_trait_similarity.pdf}
+    \caption{\textbf{Trait--trait similarity.} \emph{Left:} Pearson correlation of celltype-score profiles. \emph{Middle:} Jaccard overlap of gene-membership sets. \emph{Right:} $r$ vs.\ $J$ scatter, with annotated pairs in the high-$r$ / low-$J$ regime. The cushion-mesenchymal block correlates strongly even when gene-set overlap is near zero.}
+    \label{fig:D}
+\end{figure}
+
+The Pearson heatmap (Fig.~\ref{fig:D}, left) cleanly block-diagonalises into:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+    \item a \emph{myocardial block}: HCM$\leftrightarrow$DCM ($r = 0.998$);
+    \item a \emph{cushion / mesenchymal block}: AVSD, OFT, TAA, PCGC, Valve\_defects pairwise $r > 0.7$;
+    \item a \emph{septal block}: ASD, VSD, Single-ventricle pairwise $r \approx 0.78$--$0.92$.
+\end{itemize}
+The Jaccard heatmap (middle), in contrast, is sparse. Most trait pairs have $J < 0.05$ even when $r$ is near 1.
+
+The scatter of $r$ vs.\ $J$ (right) makes the relationship explicit. Two pairs are flagged in the high-$r$ / low-$J$ regime, and they are the most informative pairs in the analysis (Table~\ref{tab:trait_pairs}).
+
+\begin{table}[H]
+    \centering\small
+    \begin{tabular}{@{}lrrrl@{}}
+        \toprule
+        \textbf{Pair} & \textbf{$r$} & \textbf{$J$} & \textbf{$|\mathcal{G}_1\cap\mathcal{G}_2|$} & \textbf{Reading} \\
+        \midrule
+        HCM $\leftrightarrow$ DCM             & 0.998 & 0.21  & 12 & Identical celltype profile, 21\% panel overlap \\
+        ASD $\leftrightarrow$ VSD             & 0.92  & 0.26  & 25 & Overlapping septal panels \\
+        \textbf{TAA $\leftrightarrow$ Valve\_defects} & \textbf{0.85}  & \textbf{0.037} & \textbf{3}  & \textbf{Functional convergence via different genes} \\
+        TAA $\leftrightarrow$ PCGC            & 0.75  & $\sim 0.03$ & $\sim 2$ & Same convergence on mesenchymal program \\
+        AVSD $\leftrightarrow$ Valve\_defects & 0.78  & 0.10  & 7  & Cushion overlap, partly shared \\
+        \bottomrule
+    \end{tabular}
+    \caption{Selected trait pairs ranked by Pearson $r$. The full $45$-pair table is in \texttt{trait\_similarity.tsv}.}
+    \label{tab:trait_pairs}
+\end{table}
+
+The TAA $\leftrightarrow$ Valve\_defects pair is the headline finding. Two independently curated panels with \textbf{only 3 genes in common} produce nearly indistinguishable celltype-score profiles ($r = 0.85$). At the panel level, TAA and Valve\_defects index the \emph{same cushion-mesenchymal developmental program} through almost non-overlapping gene sets. This is the cleanly resolved version of an apparent paradox we observed previously: in cell-level robustness tests, the TAA panel scored worse than fibroblast-only baselines for separating valve cells from non-valve cells. At the cell-type-profile resolution used here, that result is consistent --- TAA marks any aortic-mesenchymal cell, not valves uniquely, but it shares the broader cushion-mesenchymal program with the curated valve panel.
+
+% =========================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+Three findings stand out.
+
+\paragraph{1. The disease panel decomposes into three developmental compartments.}
+Working myocardium, AV/OFT cushion mesenchyme, and aortic / general mesenchyme. The decomposition is recovered by hierarchical clustering alone (Fig.~\ref{fig:B}), independent of trait labels, and it tracks the trait--trait similarity structure of Fig.~\ref{fig:D}. This is biologically sensible: cardiomyopathies originate in differentiated myocytes; septal and valvar CHD originate in cushion-derived endothelial-to-mesenchymal transition; aortopathies originate in neural-crest-derived smooth muscle and adventitial fibroblasts.
+
+\paragraph{2. Cardiomyopathy panels collapse to a single celltype identity at PCW12.}
+HCM and DCM cannot be distinguished by their celltype-score profiles ($r = 0.998$). They differ in genes (Jaccard $0.21$), but the panels converge on the same working-myocyte celltype. The clinical distinction --- hypertrophic vs.\ dilated --- is presumably encoded by mechanism (sarcomeric force-generation vs.\ sarcomeric force-transmission), not by which fetal cell type expresses the gene.
+
+\paragraph{3. Convergent celltype targeting through non-overlapping gene sets.}
+The TAA $\leftrightarrow$ Valve\_defects pair (3 shared genes, $r = 0.85$) and the TAA $\leftrightarrow$ PCGC pair argue that disease loci across phenotypes are tagging a shared developmental program (here, EMT-derived cushion / aortic mesenchyme), rather than capturing trait-specific biology by gene-set enrichment artefacts. This is the kind of signal that motivates moving from gene-list comparisons to cell-state-resolved comparisons in fetal-tissue atlases.
+
+\paragraph{Practical follow-ups suggested by the data.}
+\begin{enumerate}[leftmargin=*,itemsep=1pt]
+    \item \emph{Stratify the HCM panel by cell type.} MYLK2 is Purkinje-restricted at PCW12; subset analyses that separate working-myocyte from conduction-system HCM members may resolve disease-mechanism heterogeneity.
+    \item \emph{Replace the TAA panel with a derived mesenchymal-cushion meta-signature} for downstream enrichment work; it would absorb TAA, Valve\_defects, PCGC, and AVSD signal cleanly while reducing redundancy.
+    \item \emph{Use BEC and WBC as biological negative-control celltypes} in any downstream gene-set test on this atlas.
+\end{enumerate}
+
+% =========================================================================
+\section{Limitations}
+\label{sec:limitations}
+
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+    \item \textbf{Subsampled atlas.} Per-celltype means are stable in the 100k-cell subsample, but the smallest cell types (\texttt{vCM-IVS-His} $n{=}92$, \texttt{ncCM-AVC-like} $n{=}186$) have wider sampling error. We therefore trust modules over single-celltype, single-gene calls.
+    \item \textbf{Imputed expression.} $\tau$ is computed on celltype means after scVI-style smoothing; absolute $\tau$ values may compress relative to raw counts. The relative ranking is robust.
+    \item \textbf{Small, CHD-biased panel.} The 221-gene universe is small. $\tau$ is therefore an \emph{intra-panel} specificity, not a genome-wide one --- a $\tau = 0.5$ here is not directly comparable to a $\tau = 0.5$ computed over $\sim 20{,}000$ genes.
+    \item \textbf{Single donor, single time-point.} All findings are descriptive of this PCW12 atlas. Donor-level replication and developmental-time generalisation are out of scope.
+\end{itemize}
+
+% =========================================================================
+\section*{Data and code availability}
+\addcontentsline{toc}{section}{Data and code availability}
+
+\begin{description}[leftmargin=2em,style=nextline]
+    \item[Pipeline]
+        \texttt{PCW12\_analysis/scripts/12\_disease\_gene\_landscape.py}
+    \item[Inputs]
+        \texttt{adata\_imputed\_disease\_genes.h5ad}; disease panel CSV.
+    \item[Outputs (this report)]
+        \texttt{figA--figD.\{png,pdf\}}, \texttt{trait\_by\_celltype\_means.tsv}, \texttt{gene\_specificity\_tau.tsv}, \texttt{trait\_similarity.tsv}.
+\end{description}
+
+\end{document}
