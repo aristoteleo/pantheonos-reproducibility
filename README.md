@@ -1,6 +1,9 @@
 # PantheonOS Reproducibility
 
-This repository contains reproduction materials (scripts, intermediate results, reports) for the figures in the **PantheonOS** paper.
+This repository contains reproduction materials (scripts, intermediate results, reports) for the figures in the **PantheonOS** paper (bioRxiv 2026.02.26.707870).
+
+- 📄 Paper: https://www.biorxiv.org/content/10.64898/2026.02.26.707870v1
+- 🌐 Platform: https://pantheonos.stanford.edu/
 
 The actual reasoning trajectories the agent took to produce each figure are recorded as **replayable bundles** hosted on Hugging Face. Click any "▶ Replay" link below to step through the exact agent conversation, tool calls, and intermediate outputs in your browser via the public PantheonOS replay viewer.
 
